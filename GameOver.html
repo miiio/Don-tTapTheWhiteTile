@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>别踩白块</title>
+	</head>
+	<body style="background-color: rgb(72, 102, 162)">
+		<div style="display: block; height: auto; width: 100%; text-align: center;margin-top: 150px;">
+			<span style="color: white;font-size: 55px;">
+				游戏结束
+			</span>
+		</div>
+
+		<div id="new" style="display: block; height: auto; width: 100%; text-align: center;margin-top: 10px;margin-bottom: -40px;display: none;">
+				<span style="color:red;font-size: 25px;">
+					新纪录！
+				</span>
+		</div>
+			
+		<div style="display: block; height: auto; width: 100%; text-align: center;margin-top: 50px;">
+			<span id="speed" style="color:black;font-size: 65px;">
+				4.512/s
+			</span>
+		</div>
+		<div style="display: block; height: auto; width: 100%; text-align: center;margin-top: 20px;">
+			<span id="best" style="color:black;font-size: 35px;">
+				历史最佳：6.645/s
+			</span>
+		</div>
+
+		<div style="display: block; height: auto; width: 100%; text-align: center;margin-top: 60px;">
+			<span style="color:white;font-size: 40px;">
+				按下Space重新开始游戏
+			</span>
+		</div>
+		
+	</body>
+
+	<script>
+		document.onkeydown = function(){
+			var e = event || window.event || arguments.callee.caller.arguments[0];
+			if (e && e.keyCode == 32) { //Space
+				window.location.href = "index.html"
+			}
+		};
+		function getQueryVariable(variable)
+		{
+			var query = window.location.search.substring(1);
+			var vars = query.split("&");
+			for (var i=0;i<vars.length;i++) {
+					var pair = vars[i].split("=");
+					if(pair[0] == variable){return pair[1];}
+			}
+			return(false);
+		}
+
+		document.getElementById("speed").innerText = getQueryVariable("speed");
+		document.getElementById("best").innerText = "历史最佳：" + getQueryVariable("best");
+		if(getQueryVariable("newBest")=="1"){
+			document.getElementById("new").style.display='';
+		}
+	</script>
+</html>
